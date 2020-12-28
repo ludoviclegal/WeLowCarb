@@ -1,0 +1,42 @@
+div {
+    padding: 5px;
+}
+
+.header, .footer, .content {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.content {
+    flex-wrap: nowrap;
+}
+
+.footer {
+    justify-content: space-around;
+}
+
+.left {
+    width: 200px;
+}
+
+
+.header img {
+    width: 200px;
+}
+
+.footer img {
+    height: 100px;
+}
+
+/*.content .center img {
+    width: 150%;
+}*/
+
+.content .center {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+

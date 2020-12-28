@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="content">
+        {{ dump(receipe) }}
+        {{ dump(ingredients) }}
+    </div>
+{% endblock %}

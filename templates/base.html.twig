@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}WE LOW CARB{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="/assets/stylesheet/home.css">
+        {% endblock %}
+    </head>
+    <body>
+        <div class="header">
+            {% block header %}
+                <div class=left>
+                    <a href="/">
+                        <img src="/assets/picture/logo/logo_WLC.png">
+                    </a>
+                </div>
+                <div class="top">
+                    <div class="slider">
+                        Le slider
+                    </div>
+                    <div class="menu">
+                        Le menu
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+        <div class="footer">
+            {% block footer %}
+                <div class="facebook">
+                    <img src="/assets/picture/footer/FB.png">
+                </div>
+                <div class="instagram">
+                    <img src="/assets/picture/footer/instagram-logo-2.png">
+                </div>
+                <div class="tiktok">
+                    <img src="/assets/picture/footer/tiktok.png">
+                </div>
+            {% endblock %}
+        </div>
+    </body>
+</html>
