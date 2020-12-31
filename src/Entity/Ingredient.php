@@ -80,6 +80,11 @@ class Ingredient
      */
     private $comment;
 
+    /** 
+    * @ORM\OneToMany(targetEntity="IngredientHasAllergen", mappedBy="ingredient", cascade={"persist", "remove"}) 
+    */ 
+    private $allergen;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -277,5 +282,40 @@ class Ingredient
         $this->comment = $comment;
 
         return $this;
+    }
+
+    /** 
+    * Add allergen 
+    * 
+    * @param IngredientHasAllergen $allergen 
+
+    * @return Ingredient 
+    */ 
+    public function addAllergen(IngredientHasAllergen $allergen)
+    { 
+        $allergen->setIngredient($this); 
+        $this->allergen[] = $allergen; 
+
+        return $this; 
+    } 
+
+    /** 
+    * Remove allergen
+    * 
+    * @param IngredientHasAllergen $allergen 
+    */ 
+    public function removeAllergen(IngredientHasAllergen $allergen)
+    { 
+        $this->allergen->removeElement($allergen);
+    } 
+
+    /** 
+    * Get allergen
+    * 
+    * @return \Doctrine\Common\Collections\Collection 
+    */ 
+    public function getAllergen()
+    { 
+        return $this->allergen; 
     }
 }

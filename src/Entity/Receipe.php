@@ -80,6 +80,11 @@ class Receipe
      */
     private $category;
 
+    /** 
+    * @ORM\OneToMany(targetEntity="ReceipeHasIngredient", mappedBy="receipe", cascade={"persist", "remove"}) 
+    */ 
+    private $ingredient;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -241,5 +246,40 @@ class Receipe
     public function __toString()
     {
         return $this->title;
+    }
+
+    /** 
+    * Add ingredient 
+    * 
+    * @param ReceipeHasIngredient $ingredient 
+
+    * @return Receipe 
+    */ 
+    public function addIngredient(ReceipeHasIngredient $ingredient)
+    { 
+        $ingredient->setReceipe($this); 
+        $this->ingredient[] = $ingredient; 
+
+        return $this; 
+    } 
+
+    /** 
+    * Remove ingredient 
+    * 
+    * @param ReceipeHasIngredient $ingredient 
+    */ 
+    public function removeIngredient(ReceipeHasIngredient $ingredient)
+    { 
+        $this->ingredient->removeElement($ingredient); 
+    } 
+
+    /** 
+    * Get ingredient
+    * 
+    * @return \Doctrine\Common\Collections\Collection 
+    */ 
+    public function getIngredient()
+    { 
+        return $this->ingredient; 
     }
 }

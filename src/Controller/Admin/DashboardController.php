@@ -34,31 +34,35 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('WeLowCarb');
+            ->setTitle('WeLowCarb')
+        ;
     }
 
     public function configureMenuItems(): iterable
     {
         return [
-            MenuItem::linktoDashboard('Dashboard', 'fa fa-home'),
+            MenuItem::linktoDashboard('Tableau de bord', 'fa fa-home'),
 
-            MenuItem::section('Ingrédients'),
-            MenuItem::linkToCrud('Catégories d\'ingrédients', 'fa fa-tags', IngredientCategory::class),
-            MenuItem::linkToCrud('Ingrédients', 'fa fa-tags', Ingredient::class),
-            MenuItem::linkToCrud('Allergènes', 'fa fa-tags', Allergen::class),
-            MenuItem::linkToCrud('Allergènes / ingrédients', 'fa fa-tags', IngredientHasAllergen::class),
+            //MenuItem::section('Recettes'),
+            MenuItem::subMenu('Recettes', 'fa fa-article')->setSubItems([
+                MenuItem::linkToCrud('Recettes', 'fa fa-tags', Receipe::class),
+                MenuItem::linkToCrud('Catégories de recettes', 'fa fa-tags', ReceipeCategory::class),
+            ]),
 
-            MenuItem::section('Recettes'),
-            MenuItem::linkToCrud('Recettes', 'fa fa-tags', Receipe::class),
-            MenuItem::linkToCrud('Catégories de recettes', 'fa fa-tags', ReceipeCategory::class),
-            MenuItem::linkToCrud('Ingrédients / recettes', 'fa fa-tags', ReceipeHasIngredient::class),
+            MenuItem::subMenu('Ingrédients', 'fa fa-article')->setSubItems([
+                MenuItem::linkToCrud('Catégories d\'ingrédients', 'fa fa-tags', IngredientCategory::class),
+                MenuItem::linkToCrud('Ingrédients', 'fa fa-tags', Ingredient::class),
+                MenuItem::linkToCrud('Allergènes', 'fa fa-tags', Allergen::class),
+            ]),
 
-            MenuItem::section('Unités'),
-            MenuItem::linkToCrud('Unités', 'fa fa-tags', Unit::class),
-            MenuItem::linkToCrud('Catégories d\'unité', 'fa fa-tags', UnitCategory::class),
+            MenuItem::subMenu('Unités', 'fa fa-article')->setSubItems([
+                MenuItem::linkToCrud('Unités', 'fa fa-tags', Unit::class),
+                MenuItem::linkToCrud('Catégories d\'unité', 'fa fa-tags', UnitCategory::class),
+            ]),
 
-            MenuItem::section('Divers'),
-            MenuItem::linkToCrud('Avis', 'fa fa-tags', Opinion::class),
+            MenuItem::subMenu('Divers', 'fa fa-article')->setSubItems([
+                MenuItem::linkToCrud('Avis', 'fa fa-tags', Opinion::class),
+            ]),
             
         ];
     }

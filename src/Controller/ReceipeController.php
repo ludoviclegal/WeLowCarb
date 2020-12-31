@@ -36,6 +36,7 @@ class ReceipeController extends AbstractController
         $ingredients = $ingredientRepository->findBy([
             'receipe' => $receipe
         ]);
+
         return $this->render('receipe/show.html.twig', [
             'receipe' => $receipe,
             'ingredients' => $ingredients,

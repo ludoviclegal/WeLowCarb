@@ -3,8 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Receipe;
+use App\Entity\ReceipeHasIngredient;
+use App\Form\ReceipeHasIngredientType;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -26,6 +28,16 @@ class ReceipeCrudController extends AbstractCrudController
             NumberField::new('cookingTime', 'Temps de cuisson'),
             NumberField::new('number', 'Nombre de personnes'),
             TextEditorField::new('preparationStep', 'Préparation'),
+
+            FormField::addPanel('Ingrédients'),
+            CollectionField::new('ingredient', 'Ingrédients')
+                ->allowAdd() 
+                ->allowDelete()
+                ->setEntryIsComplex(true)
+                ->setEntryType(ReceipeHasIngredientType::class)
+                ->setFormTypeOptions([
+                    'by_reference' => 'false' 
+                ]),
         ];
     }
 }

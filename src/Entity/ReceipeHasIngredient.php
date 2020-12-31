@@ -24,7 +24,7 @@ class ReceipeHasIngredient
     private $ingredient;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Receipe")
+     * @ORM\ManyToOne(targetEntity="Receipe", inversedBy="ingredient")
      * @ORM\JoinColumn(name="receipe_id", referencedColumnName="id")
      */
     private $receipe;
@@ -115,5 +115,10 @@ class ReceipeHasIngredient
         $this->unit = $unit;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getIngredient()->getTitle();
     }
 }
