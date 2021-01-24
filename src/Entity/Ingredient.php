@@ -46,12 +46,22 @@ class Ingredient
     /**
      * @ORM\Column(type="float", nullable=true)
      */
-    private $fiber;
+    private $fiberIncluded;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $fiberExcluded;
 
     /**
      * @ORM\Column(type="float", nullable=true)
      */
     private $sugar;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $saturatedFat;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -146,18 +156,6 @@ class Ingredient
     public function setKcal(?float $kcal): self
     {
         $this->kcal = $kcal;
-
-        return $this;
-    }
-
-    public function getFiber(): ?float
-    {
-        return $this->fiber;
-    }
-
-    public function setFiber(?float $fiber): self
-    {
-        $this->fiber = $fiber;
 
         return $this;
     }
@@ -317,5 +315,65 @@ class Ingredient
     public function getAllergen()
     { 
         return $this->allergen; 
+    }
+
+    /**
+     * Get the value of fiberIncluded
+     */ 
+    public function getFiberIncluded()
+    {
+        return $this->fiberIncluded;
+    }
+
+    /**
+     * Set the value of fiberIncluded
+     *
+     * @return  self
+     */ 
+    public function setFiberIncluded($fiberIncluded)
+    {
+        $this->fiberIncluded = $fiberIncluded;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of fiberExcluded
+     */ 
+    public function getFiberExcluded()
+    {
+        return $this->fiberExcluded;
+    }
+
+    /**
+     * Set the value of fiberExcluded
+     *
+     * @return  self
+     */ 
+    public function setFiberExcluded($fiberExcluded)
+    {
+        $this->fiberExcluded = $fiberExcluded;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of saturatedFat
+     */ 
+    public function getSaturatedFat()
+    {
+        return $this->saturatedFat;
+    }
+
+    /**
+     * Set the value of saturatedFat
+     *
+     * @return  self
+     */ 
+    public function setSaturatedFat($saturatedFat)
+    {
+        $this->saturatedFat = $saturatedFat;
+
+        return $this;
     }
 }

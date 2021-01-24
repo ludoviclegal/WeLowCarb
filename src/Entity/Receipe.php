@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\ManyToMany;
 use App\Repository\ReceipeRepository;
-use phpDocumentor\Reflection\Types\Parent_;
-use Symfony\Component\Validator\Constraints\DateTime;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 
 /**
+ * @HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass=ReceipeRepository::class)
  */
 class Receipe
@@ -81,7 +82,7 @@ class Receipe
     private $category;
 
     /** 
-    * @ORM\OneToMany(targetEntity="ReceipeHasIngredient", mappedBy="receipe", cascade={"persist", "remove"}) 
+    * @ORM\OneToMany(targetEntity="ReceipeHasIngredient", mappedBy="receipe", cascade={"persist", "remove"})
     */ 
     private $ingredient;
 
@@ -228,7 +229,20 @@ class Receipe
      */
     public function onPrePersist()
     {
-        $this->createdAt = new DateTime("now");
+        $this->createdAt = new \DateTime("now");
+    }
+
+    /**
+     * Gets triggered only on update
+     * @ORM\PreUpdate
+     * ne fonctionne pas avec DQL
+     */
+    public function onPreUpdate()
+    {
+        $ingredients = $this->ingredient;
+        foreach ($ingredients as $ingredient) {
+            $ingredient->setReceipe($this);
+        }
     }
 
     public function getCategory(): ?ReceipeCategory
@@ -281,5 +295,16 @@ class Receipe
     public function getIngredient()
     { 
         return $this->ingredient; 
+    }
+
+    protected function doSave($con = null)
+    {
+        die;
+        $ingredients = $this->ingredient;
+        foreach ($ingredients as $ingredient) {
+            $ingredient->setReceipe($this);
+        }
+    
+        return parent::doSave($con);
     }
 }

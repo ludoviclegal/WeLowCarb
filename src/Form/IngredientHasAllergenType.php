@@ -12,7 +12,7 @@ class IngredientHasAllergenType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            //->add('ingredient')
+            ->add('ingredient')
             ->add('allergen')
         ;
     }

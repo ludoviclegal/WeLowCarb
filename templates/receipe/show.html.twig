@@ -3,7 +3,17 @@
 {% block body %}
     {{ parent() }}
     <div class="content">
-        {{ dump(receipe) }}
-        {{ dump(ingredients) }}
+        <div class="receipe_left">
+            Ingrédients pour {{ receipe.number }} Personnes :
+            {% for ingredient in ingredients %}
+                <div>
+                    - {{ ingredient.quantity }} {{ ingredient.unit }} {{ ingredient.ingredient }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="receipe_right">
+            {# dump(receipe) #}
+            {{ receipe.preparationStep }}
+        </div>
     </div>
 {% endblock %}

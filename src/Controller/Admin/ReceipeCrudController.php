@@ -8,6 +8,7 @@ use App\Form\ReceipeHasIngredientType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -40,4 +41,15 @@ class ReceipeCrudController extends AbstractCrudController
                 ]),
         ];
     }
+
+    /*public function edit(AdminContext $context)
+    {
+        die('coucou');
+        $editForm = $this->createEditForm($context->getEntity(), $context->getCrud()->getEditFormOptions(), $context);
+        $editForm->handleRequest($context->getRequest());
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+        }
+        //parent::edit(AdminContext $context);
+    }*/
 }

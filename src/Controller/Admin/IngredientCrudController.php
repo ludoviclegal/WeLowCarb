@@ -23,15 +23,19 @@ class IngredientCrudController extends AbstractCrudController
         return [
             TextField::new('title', 'Nom'),
             AssociationField::new('category'),
-            NumberField::new('carb', 'Glucides'),
-            NumberField::new('fiber', 'dont fibres'),
-            NumberField::new('sugar', 'dont sucre'),
-            NumberField::new('protein', 'Protéines'),
-            NumberField::new('fat', 'Lipides'),
             NumberField::new('kcal', 'Kilo calories'),
             NumberField::new('quantityFor', 'Valeur pour'),
             AssociationField::new('unit', 'Unité'),
             TextField::new('comment', 'Commentaire'),
+
+            FormField::addPanel('Macros'),
+            NumberField::new('carb', 'Glucides'),
+            NumberField::new('fiberIncluded', 'dont fibres'),
+            NumberField::new('sugar', 'dont sucre'),
+            NumberField::new('protein', 'Protéines'),
+            NumberField::new('fat', 'Lipides'),
+            NumberField::new('saturatedFat', 'Graisses saturées'),
+            NumberField::new('fiberExcluded', 'Autres fibres'),
 
             FormField::addPanel('Allergens'),
             CollectionField::new('allergen', 'Allergens')

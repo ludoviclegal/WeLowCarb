@@ -13,8 +13,13 @@ class ReceipeHasIngredientType extends AbstractType
     {
         $builder
             ->add('quantity')
-            ->add('ingredient')
-            //->add('receipe')
+            ->add('ingredient')/*, CollectionType::class, [
+                'query_builder' => function(EntityRepository $repository) { 
+                    return $repository->createQueryBuilder('ingredient')->orderBy('ingredient.title', 'ASC');
+                },
+                'property' => 'title',
+            ])*/
+            //->add('receipe')//, null, ['choice_value' => ])
             ->add('unit')
         ;
     }

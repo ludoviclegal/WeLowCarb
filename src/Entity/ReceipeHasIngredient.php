@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\ReceipeHasIngredientRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use App\Repository\ReceipeHasIngredientRepository;
 
 /**
+ * @HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass=ReceipeHasIngredientRepository::class)
  */
 class ReceipeHasIngredient
@@ -20,11 +22,12 @@ class ReceipeHasIngredient
     /**
      * @ORM\ManyToOne(targetEntity="Ingredient")
      * @ORM\JoinColumn(name="ingredient_id", referencedColumnName="id")
+     * @ORM\OrderBy({"title" = "ASC"})
      */
     private $ingredient;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Receipe", inversedBy="ingredient")
+     * @ORM\ManyToOne(targetEntity="Receipe")
      * @ORM\JoinColumn(name="receipe_id", referencedColumnName="id")
      */
     private $receipe;
@@ -77,8 +80,7 @@ class ReceipeHasIngredient
         return $this;
     }
 
-    /**
-     * Get the value of receipe
+    /*** Get the value of receipe
      */ 
     public function getReceipe()
     {
